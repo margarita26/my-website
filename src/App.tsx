@@ -1,24 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import { css, Global } from "@emotion/core";
+import { MainPage, LandingAnimation } from "./pages";
+
+const GLobalStyles = css`
+  @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
+`;
 
 function App() {
+  const [showAnimation, setShowAnimation] = useState<boolean>(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowAnimation(false);
+    }, 5000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <body>
+        <header className="App-header">
+          <Global styles={GLobalStyles} />
+          {showAnimation ? <LandingAnimation /> : <MainPage />}
+        </header>
+      </body>
     </div>
   );
 }
