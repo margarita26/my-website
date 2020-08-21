@@ -12,11 +12,13 @@ type BackgroundImageProps = {
 const fadeInAnimation = keyframes`
       0% { opacity: 0;}
       50% { opacity: 1;}
-      100% { opacity: 0}
+      100% { opacity: 0.0}
       `;
 
 const BackgroundImage = styled.img<BackgroundImageProps>`
-  animation: 5s ${fadeInAnimation};
+  animation-name: ${fadeInAnimation};
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
   width: ${(props: BackgroundImageProps) => props.width};
   height: ${(props: BackgroundImageProps) => props.height};
 `;
