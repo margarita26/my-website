@@ -1,10 +1,10 @@
 import React from "react";
-import styled from "@emotion/styled";
 import { keyframes } from "@emotion/core";
+import styled from "@emotion/styled";
 import { useWindowSize } from "@react-hook/window-size";
-import { colors, fontSizes, fonts } from "../constants";
+import { colors, fonts, fontSizes } from "../constants";
 import logo from "../logo.svg";
-
+import { SocialMediaBar } from "./SocailMediaBar";
 
 const fadeInAnimation = keyframes`
       0% { opacity: 0;}
@@ -12,10 +12,11 @@ const fadeInAnimation = keyframes`
       `;
 
 const StyledMenu = styled.nav`
-  animation: 5s ${fadeInAnimation};
+  animation-name: ${fadeInAnimation};
+  animation-duration: 3s;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   height: 100vh;
   text-align: left;
@@ -26,9 +27,16 @@ const StyledMenu = styled.nav`
   transition: transform 0.3s ease-in-out;
 `;
 
-const StyledNavItem = styled.a`
+type NavItemProps = {
+  delay: number;
+};
+
+const StyledNavItem = styled.a<NavItemProps>`
+  animation-name: ${fadeInAnimation};
+  animation-duration: 3s;
+  animation-delay: ${(props: NavItemProps) => props.delay};
   color: ${colors.white};
-  font-size: ${fontSizes.heading};
+  font-size: ${fontSizes.responsiveText};
   font-family: ${fonts.rajdhani};
   padding: 16px;
   &:hover {
@@ -53,8 +61,20 @@ export const SideMenu: React.FC = () => {
 
   return (
     <StyledMenu>
-      <StyledLogo width={width / 8} height={height / 8} src={logo} />
-      <StyledNavItem>About me</StyledNavItem>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <StyledLogo width={width / 8} height={height / 8} src={logo} />
+        <StyledNavItem delay={3}>About me</StyledNavItem>
+        <StyledNavItem delay={9}>Experience</StyledNavItem>
+        <StyledNavItem delay={27}>Blog</StyledNavItem>
+      </div>
+      <SocialMediaBar />
     </StyledMenu>
   );
 };
