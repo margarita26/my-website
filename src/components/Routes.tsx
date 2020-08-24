@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Switch, Route } from "react-router-dom";
 import { createBrowserHistory as history} from 'history';
-import { WelcomePage, AboutPage, BlogPage, ExperiencePage } from '../pages';
+import { WelcomePage, AboutPage, BlogPage, ExperiencePage } from './pages';
 import {routes} from "../constants";
 
 

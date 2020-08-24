@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
-import { fonts, colors, fontSizes } from "../constants";
+import { fonts, colors, fontSizes } from "../../constants";
 
 const StyledDiv = styled.div`
   display: flex;
