@@ -1,9 +1,10 @@
-import React, { useEffect, useState, useMemo } from "react";
-import "./App.css";
 import { css, Global } from "@emotion/core";
-import { LandingPage } from "./pages";
-import { colors } from "./constants/colors";
 import styled from "@emotion/styled";
+import React from "react";
+import "./App.css";
+import { LandingPage } from "./components/pages";
+import { colors } from "./constants/colors";
+import { CookiesProvider } from "react-cookie";
 
 const GLobalStyles = css`
   @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
@@ -21,12 +22,13 @@ const StyledDiv = styled.div`
 `;
 
 function App() {
-
   return (
-    <StyledDiv className="App">
-      <Global styles={GLobalStyles} />
-       <LandingPage />
-    </StyledDiv>
+    <CookiesProvider>
+      <StyledDiv className="App">
+        <Global styles={GLobalStyles} />
+        <LandingPage />
+      </StyledDiv>
+    </CookiesProvider>
   );
 }
 

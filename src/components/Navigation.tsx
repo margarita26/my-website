@@ -1,8 +1,7 @@
-import { keyframes } from "@emotion/core";
-import styled from "@emotion/styled";
 import { useWindowSize } from "@react-hook/window-size";
 import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
+import styled from "@emotion/styled";
 import { colors, fonts, fontSizes, routes } from "../constants";
 import logo from "../logo.svg";
 import { SocialMediaBar } from "./SocailMediaBar";
@@ -33,8 +32,8 @@ const MenuNavMenuItem = styled(Nav.Item)`
 `;
 
 const StyledNavLink = styled(Nav.Link)`
-  text-decoration: none; 
-`
+  text-decoration: none;
+`;
 
 const StyledMenuItemText = styled.text`
   color: ${colors.white};
@@ -71,18 +70,13 @@ export const SideBarNavigation: React.FC = (props) => {
         activeKey={routes.welcomePage}
       >
         <MenuNavMenuItem>
-          <StyledNavLink
-            href={routes.welcomePage}
-          >
+          <StyledNavLink href={routes.welcomePage}>
             <StyledLogo width={width / 8} height={height / 8} src={logo} />
           </StyledNavLink>
         </MenuNavMenuItem>
 
         <MenuNavMenuItem>
-          <StyledNavLink
-            href={routes.aboutMePage}
-            
-          >
+          <StyledNavLink href={routes.aboutMePage}>
             <StyledMenuItemText>About me</StyledMenuItemText>
           </StyledNavLink>
         </MenuNavMenuItem>
