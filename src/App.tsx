@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useMemo } from "react";
 import "./App.css";
 import { css, Global } from "@emotion/core";
-import { MainPage, LandingAnimation } from "./pages";
+import { LandingPage } from "./pages";
 import { colors } from "./constants/colors";
 import styled from "@emotion/styled";
 
 const GLobalStyles = css`
   @import url("https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap");
+  @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 `;
 
 const StyledDiv = styled.div`
@@ -20,19 +21,11 @@ const StyledDiv = styled.div`
 `;
 
 function App() {
-  const [showAnimation, setShowAnimation] = useState<boolean>(true);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowAnimation(false);
-    }, 3100);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <StyledDiv className="App">
       <Global styles={GLobalStyles} />
-      {showAnimation ? <LandingAnimation /> : <MainPage />}
+       <LandingPage />
     </StyledDiv>
   );
 }
