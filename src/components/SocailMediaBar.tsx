@@ -1,6 +1,6 @@
+import React from "react";
 import styled from "@emotion/styled";
 import CSS from "csstype";
-import React from "react";
 import {
   FaFacebookSquare,
   FaGithubSquare,
@@ -21,16 +21,32 @@ const socialMediaIconStyle: CSS.Properties = {
 export const SocialMediaBar: React.FC = () => {
   return (
     <StyledDiv>
-      <a href="https://www.instagram.com/margarita_gbnva/" target="_blank">
+      <a
+        href="https://www.instagram.com/margarita_gbnva/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FaInstagram style={socialMediaIconStyle} />
       </a>
-      <a href="https://www.facebook.com/rita.gubanova.9/" target="_blank">
+      <a
+        href="https://www.facebook.com/rita.gubanova.9/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FaFacebookSquare style={socialMediaIconStyle} />
       </a>
-      <a href="https://www.linkedin.com/in/margarita-gubanova/" target="_blank">
+      <a
+        href="https://www.linkedin.com/in/margarita-gubanova/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FaLinkedin style={socialMediaIconStyle} />
       </a>
-      <a href="https://github.com/margarita26" target="_blank">
+      <a
+        href="https://github.com/margarita26"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         <FaGithubSquare style={socialMediaIconStyle} />
       </a>
     </StyledDiv>
