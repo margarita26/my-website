@@ -1,8 +1,9 @@
-export const colors = { 
-    white: 'white', 
-    black: 'black', 
-    grey: 'grey',
-    primary: '#021B36',
-    darkBlue: '#011326', 
-    lightBlue: '#05305e'
-}
+export const colors = {
+  white: 'white',
+  black: 'black',
+  grey: 'grey',
+  neonBlue: '#55F6F6',
+  primary: '#0B1A2E',
+  darkBlue: '#011326',
+  lightPrimary: '#6498B0',
+};

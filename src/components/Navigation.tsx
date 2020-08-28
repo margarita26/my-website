@@ -1,34 +1,35 @@
-import { useWindowSize } from "@react-hook/window-size";
-import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
-import { keyframes } from "@emotion/core";
-import styled from "@emotion/styled";
-import { colors, fonts, fontSizes, routes } from "../constants";
-import logo from "../logo.svg";
-import { SocialMediaBar } from "./SocailMediaBar";
+import styled from '@emotion/styled';
+import { useWindowSize } from '@react-hook/window-size';
+import React from 'react';
+import { Nav, Navbar } from 'react-bootstrap';
+import { colors, fonts,  fontSizesVW, routes } from '../constants';
+import logo from '../logo.svg';
 
-const fadeInAnimation = keyframes`
-      0% { opacity: 0;}
-      100% { opacity: 1;}
-      `;
+type StyledLogoProps = {
+  width: number;
+  height: number;
+};
 
-const StyledMenu = styled(Navbar)`
-  animation-name: ${fadeInAnimation};
-  animation-duration: 5s;
+const StyledNavBar = styled(Navbar)`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100vh;
+  width: 100%;
   text-align: left;
   padding: 8px;
   position: absolute;
   top: 0;
   left: 0;
-  transition: transform 0.3s ease-in-out;
 `;
 
-const MenuNavMenuItem = styled(Nav.Item)`
+const StyledNav = styled(Nav)`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const StyledNavItem = styled(Nav.Item)`
   padding: 16px;
 `;
 
@@ -36,65 +37,57 @@ const StyledNavLink = styled(Nav.Link)`
   text-decoration: none;
 `;
 
-const StyledMenuItemText = styled.text`
+const StyledLogo = styled.img<StyledLogoProps>`
+  width: ${(props: StyledLogoProps) => props.width};
+  height: ${(props: StyledLogoProps) => props.height};
+`;
+
+const StyledText = styled.text`
   color: ${colors.white};
-  font-size: ${fontSizes.responsiveText};
+  font-size: ${fontSizesVW.heading};
   font-family: ${fonts.rajdhani};
   &:hover {
-    color: ${colors.grey};
+    color: ${colors.neonBlue};
     cursor: pointer;
+  }
+  @media (min-width: 375px) {
+    font-size: 16px;
+  }
+  @media (min-width: 1000px) {
+    font-size: 32px;
   }
 `;
 
-type LogoProps = {
-  width: number;
-  height: number;
-};
-
-const StyledLogo = styled.img<LogoProps>`
-  width: ${(props: LogoProps) => props.width};
-  height: ${(props: LogoProps) => props.height};
-`;
-
-export const SideBarNavigation: React.FC = (props) => {
+export const BarNavigation: React.FC = () => {
   const [width, height] = useWindowSize();
 
   return (
-    <StyledMenu>
-      <Nav
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          paddingBottom: "4vw",
-        }}
-        activeKey={routes.welcomePage}
-      >
-        <MenuNavMenuItem>
+    <StyledNavBar>
+      <StyledNav activeKey={routes.welcomePage}>
+        <StyledNavItem>
           <StyledNavLink href={routes.welcomePage}>
-            <StyledLogo width={width / 8} height={height / 8} src={logo} />
+            <StyledLogo width={width / 10} height={height / 10} src={logo} />
           </StyledNavLink>
-        </MenuNavMenuItem>
+        </StyledNavItem>
 
-        <MenuNavMenuItem>
+        <StyledNavItem>
           <StyledNavLink href={routes.aboutMePage}>
-            <StyledMenuItemText>About me</StyledMenuItemText>
+            <StyledText>About me</StyledText>
           </StyledNavLink>
-        </MenuNavMenuItem>
+        </StyledNavItem>
 
-        <MenuNavMenuItem>
+        <StyledNavItem>
           <StyledNavLink href={routes.experiencePage}>
-            <StyledMenuItemText>Experience</StyledMenuItemText>
+            <StyledText>Experience</StyledText>
           </StyledNavLink>
-        </MenuNavMenuItem>
+        </StyledNavItem>
 
-        <MenuNavMenuItem>
+        <StyledNavItem>
           <StyledNavLink href={routes.blogPage}>
-            <StyledMenuItemText>Blog</StyledMenuItemText>
+            <StyledText>Blog</StyledText>
           </StyledNavLink>
-        </MenuNavMenuItem>
-      </Nav>
-      <SocialMediaBar />
-    </StyledMenu>
+        </StyledNavItem>
+      </StyledNav>
+    </StyledNavBar>
   );
 };

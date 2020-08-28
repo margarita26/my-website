@@ -1,4 +1,4 @@
-export const fonts = { 
-    rajdhani: "Rajdhani",
-    openSans: "Open Sans",
-}
+export const fonts = {
+  rajdhani: 'Rajdhani',
+  openSans: 'Open Sans',
+};
