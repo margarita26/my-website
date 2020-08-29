@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { fonts, colors, fontSizes } from '../../constants';
+import { fonts, colors, fontSizes, screenSize } from '../../constants';
 import { keyframes } from '@emotion/core';
 
 const fadeInAnimation = keyframes`
@@ -26,10 +26,10 @@ const StyledText = styled.text<TextProps>`
   font-family: ${fonts.rajdhani};
   font-size: ${(props: TextProps) => props.textSize};
   color: ${(props: TextProps) => props.textColor};
-  @media (min-width: 375px) {
+  @media (min-width: ${screenSize.phone}) {
     font-size: ${(props: TextProps) => props.mediaPhoneSize};
   }
-  @media (min-width: 1000px) {
+  @media (min-width: ${screenSize.desktop}) {
     font-size: ${(props: TextProps) => props.textSize};
   }
 `;

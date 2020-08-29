@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { createBrowserHistory as history } from 'history';
 import React from 'react';
-import { Container } from '@material-ui/core';
 import { Router } from 'react-router-dom';
 import { BarNavigation, Routes, SocialMediaBar } from '../../components';
 
@@ -14,15 +13,19 @@ const StyledContainer = styled.div`
   min-height: 90%;
 `;
 
+const StyledRouter = styled(Router)`
+  padding: 8px;
+`;
+
 const browserHistory = history();
 
 export const LandingPage: React.FC = () => {
   return (
     <StyledContainer>
-      <Router history={browserHistory}>
+      <StyledRouter history={browserHistory}>
         <BarNavigation />
         <Routes />
-      </Router>
+      </StyledRouter>
       <SocialMediaBar />
     </StyledContainer>
   );

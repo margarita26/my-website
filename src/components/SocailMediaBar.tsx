@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '@emotion/styled';
 import CSS from 'csstype';
 import { FaFacebookSquare, FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { fontSizes } from '../constants';
+import { fontSizes, screenSize, colors } from '../constants';
 
 const StyledContainer = styled.div`
   padding: 8px;
@@ -12,16 +12,16 @@ const StyledContainer = styled.div`
 
 const StyledLink = styled.a`
   font-size: ${fontSizes.heading};
-  @media (min-width: 375px) {
+  @media (min-width: ${screenSize.phone}) {
     font-size: ${fontSizes.regular};
   }
-  @media (min-width: 1000px) {
+  @media (min-width: ${screenSize.desktop}) {
     font-size: ${fontSizes.heading};
   }
 `;
 
 const socialMediaIconStyle: CSS.Properties = {
-  color: 'white',
+  color: colors.white,
   padding: '8px',
 };
 
