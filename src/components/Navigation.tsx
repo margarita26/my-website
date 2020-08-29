@@ -1,60 +1,42 @@
-import styled from '@emotion/styled';
-import { useWindowSize } from '@react-hook/window-size';
 import React from 'react';
-import { Nav, Navbar } from 'react-bootstrap';
-import { colors, fonts,  fontSizesVW, routes } from '../constants';
+import { useWindowSize } from '@react-hook/window-size';
+import styled from '@emotion/styled';
+import { AppBar, Button, IconButton, Link, Toolbar } from '@material-ui/core';
+import { colors, fonts, fontSizes, routes } from '../constants';
 import logo from '../logo.svg';
 
-type StyledLogoProps = {
+type LogoProps = {
   width: number;
   height: number;
 };
 
-const StyledNavBar = styled(Navbar)`
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  text-align: left;
-  padding: 8px;
-  position: absolute;
-  top: 0;
-  left: 0;
-`;
-
-const StyledNav = styled(Nav)`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const StyledNavItem = styled(Nav.Item)`
-  padding: 16px;
-`;
-
-const StyledNavLink = styled(Nav.Link)`
+const StyledLink = styled(Link)`
   text-decoration: none;
+  padding: 4px;
+  :hover {
+    text-decoration: none;
+    color: transparent;
+  }
 `;
 
-const StyledLogo = styled.img<StyledLogoProps>`
-  width: ${(props: StyledLogoProps) => props.width};
-  height: ${(props: StyledLogoProps) => props.height};
+const StyledLogo = styled.img<LogoProps>`
+  width: ${(props: LogoProps) => props.width};
+  height: ${(props: LogoProps) => props.height}; ;
 `;
 
 const StyledText = styled.text`
-  color: ${colors.white};
-  font-size: ${fontSizesVW.heading};
   font-family: ${fonts.rajdhani};
-  &:hover {
+  font-size: ${fontSizes.heading};
+  color: ${colors.white};
+  text-decoration: none;
+  :hover {
     color: ${colors.neonBlue};
-    cursor: pointer;
   }
   @media (min-width: 375px) {
-    font-size: 16px;
+    font-size: ${fontSizes.regular};
   }
   @media (min-width: 1000px) {
-    font-size: 32px;
+    font-size: ${fontSizes.heading};
   }
 `;
 
@@ -62,32 +44,29 @@ export const BarNavigation: React.FC = () => {
   const [width, height] = useWindowSize();
 
   return (
-    <StyledNavBar>
-      <StyledNav activeKey={routes.welcomePage}>
-        <StyledNavItem>
-          <StyledNavLink href={routes.welcomePage}>
+    <AppBar color="primary" position="fixed">
+      <Toolbar>
+        <StyledLink href={routes.welcomePage}>
+          <IconButton edge="start" color="default">
             <StyledLogo width={width / 10} height={height / 10} src={logo} />
-          </StyledNavLink>
-        </StyledNavItem>
-
-        <StyledNavItem>
-          <StyledNavLink href={routes.aboutMePage}>
+          </IconButton>
+        </StyledLink>
+        <StyledLink href={routes.aboutMePage}>
+          <Button color="default">
             <StyledText>About me</StyledText>
-          </StyledNavLink>
-        </StyledNavItem>
-
-        <StyledNavItem>
-          <StyledNavLink href={routes.experiencePage}>
+          </Button>
+        </StyledLink>
+        <StyledLink href={routes.experiencePage}>
+          <Button color="default">
             <StyledText>Experience</StyledText>
-          </StyledNavLink>
-        </StyledNavItem>
-
-        <StyledNavItem>
-          <StyledNavLink href={routes.blogPage}>
+          </Button>
+        </StyledLink>
+        <StyledLink href={routes.blogPage}>
+          <Button color="default">
             <StyledText>Blog</StyledText>
-          </StyledNavLink>
-        </StyledNavItem>
-      </StyledNav>
-    </StyledNavBar>
+          </Button>
+        </StyledLink>
+      </Toolbar>
+    </AppBar>
   );
 };

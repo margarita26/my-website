@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
-import { fonts, colors, fontSizesVW, fontSizesPX } from '../../constants';
+import { fonts, colors, fontSizes } from '../../constants';
 import { keyframes } from '@emotion/core';
 
 type TextProps = {
@@ -40,24 +40,24 @@ export const WelcomePage: React.FC = () => {
       <div>
         <StyledText
           textColor={colors.neonBlue}
-          textSize={fontSizesVW.heading}
-          mediaPhoneSize={fontSizesPX.regular}>
+          textSize={fontSizes.heading}
+          mediaPhoneSize={fontSizes.regular}>
           Hi, my name is
         </StyledText>
       </div>
       <div>
         <StyledText
           textColor={colors.white}
-          textSize={fontSizesVW.big}
-          mediaPhoneSize={fontSizesPX.heading}>
+          textSize={fontSizes.big}
+          mediaPhoneSize={fontSizes.heading}>
           Margarita Gubanova
         </StyledText>
       </div>
       <div>
         <StyledText
           textColor={colors.white}
-          textSize={fontSizesVW.heading}
-          mediaPhoneSize={fontSizesPX.regular}>
+          textSize={fontSizes.heading}
+          mediaPhoneSize={fontSizes.regular}>
           I am a software engineer located in Boston 🤓
         </StyledText>
       </div>
