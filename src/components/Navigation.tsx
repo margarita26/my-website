@@ -2,7 +2,7 @@ import React from 'react';
 import { useWindowSize } from '@react-hook/window-size';
 import styled from '@emotion/styled';
 import { AppBar, Button, IconButton, Link, Toolbar } from '@material-ui/core';
-import { colors, fonts, fontSizes, routes } from '../constants';
+import { colors, fonts, fontSizes, routes, screenSize } from '../constants';
 import logo from '../logo.svg';
 
 type LogoProps = {
@@ -32,10 +32,10 @@ const StyledText = styled.text`
   :hover {
     color: ${colors.neonBlue};
   }
-  @media (min-width: 375px) {
+  @media (min-width: ${screenSize.phone}) {
     font-size: ${fontSizes.regular};
   }
-  @media (min-width: 1000px) {
+  @media (min-width: ${screenSize.desktop}) {
     font-size: ${fontSizes.heading};
   }
 `;
