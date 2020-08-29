@@ -4,6 +4,4 @@ export const colors = {
   grey: 'grey',
   neonBlue: '#55F6F6',
   primary: '#0B1A2E',
-  darkBlue: '#011326',
-  lightPrimary: '#6498B0',
 };

@@ -1,48 +1,53 @@
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
+import { CookiesProvider } from 'react-cookie';
 import './App.css';
 import { LandingPage } from './components/pages';
 import { colors } from './constants/colors';
-import { CookiesProvider } from 'react-cookie';
-import { useWindowSize } from '@react-hook/window-size';
+import Container from '@material-ui/core/Container';
 
 const GLobalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 `;
 
-type StyledDivProps = {
-  width: number;
-  height: number;
-};
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#0B1A2E',
+    },
+    secondary: {
+      main: '#3b4757',
+    },
+    tonalOffset: 0.2,
+  },
+});
 
-const StyledDiv = styled.div<StyledDivProps>`
+const StyledContainer = styled(Container)`
+  display: none;
+  flex-direction: column;
   position: absolute;
   top: 0;
-  left: 0;
-  background-color: ${colors.primary};
+  bottom: 0;
   min-width: 100%;
   min-height: 100%;
-  height: ${(props: StyledDivProps) => props.height};
-  width: ${(props: StyledDivProps) => props.width};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow: scroll;
+  background-color: ${colors.primary};
+  overflow: hidden;
 `;
 
 function App() {
-  const [width, height] = useWindowSize();
-
   return (
-    <CookiesProvider>
-      <StyledDiv width={width} height={height} className="App">
-        <Global styles={GLobalStyles} />
-        <LandingPage />
-      </StyledDiv>
-    </CookiesProvider>
+    <ThemeProvider theme={theme}>
+      <CookiesProvider>
+        <StyledContainer>
+          <Global styles={GLobalStyles} />
+          <LandingPage />
+        </StyledContainer>
+      </CookiesProvider>
+    </ThemeProvider>
   );
 }
 
