@@ -4,7 +4,7 @@ import CSS from 'csstype';
 import { FaFacebookSquare, FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { fontSizes } from '../constants';
 
-const StyledDiv = styled.div`
+const StyledContainer = styled.div`
   padding: 8px;
   bottom: 0;
   position: absolute;
@@ -27,7 +27,7 @@ const socialMediaIconStyle: CSS.Properties = {
 
 export const SocialMediaBar: React.FC = () => {
   return (
-    <StyledDiv>
+    <StyledContainer>
       <StyledLink
         href="https://www.instagram.com/margarita_gbnva/"
         target="_blank"
@@ -49,6 +49,6 @@ export const SocialMediaBar: React.FC = () => {
       <StyledLink href="https://github.com/margarita26" target="_blank" rel="noopener noreferrer">
         <FaGithubSquare style={socialMediaIconStyle} />
       </StyledLink>
-    </StyledDiv>
+    </StyledContainer>
   );
 };
