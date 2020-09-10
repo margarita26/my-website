@@ -1,5 +1,6 @@
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
+import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
@@ -7,7 +8,7 @@ import { CookiesProvider } from 'react-cookie';
 import './App.css';
 import { LandingPage } from './components/pages';
 import { colors } from './constants/colors';
-import Container from '@material-ui/core/Container';
+import { ApiProvider } from './contexts/api-context';
 
 const GLobalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
@@ -44,7 +45,9 @@ function App() {
       <CookiesProvider>
         <StyledContainer>
           <Global styles={GLobalStyles} />
-          <LandingPage />
+          <ApiProvider>
+            <LandingPage />
+          </ApiProvider>
         </StyledContainer>
       </CookiesProvider>
     </ThemeProvider>

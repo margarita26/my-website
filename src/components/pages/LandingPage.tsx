@@ -4,6 +4,8 @@ import React from 'react';
 import { Router } from 'react-router-dom';
 import { BarNavigation, Routes, SocialMediaBar } from '../../components';
 
+const browserHistory = history();
+
 const StyledContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -16,8 +18,6 @@ const StyledContainer = styled.div`
 const StyledRouter = styled(Router)`
   padding: 8px;
 `;
-
-const browserHistory = history();
 
 export const LandingPage: React.FC = () => {
   return (
