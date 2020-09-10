@@ -3,16 +3,16 @@ import styled from '@emotion/styled';
 import { fonts, colors, fontSizes, screenSize } from '../../constants';
 import { keyframes } from '@emotion/core';
 
-const fadeInAnimation = keyframes`
-      0% { opacity: 0;}
-      100% { opacity: 1;}
-      `;
-
 type TextProps = {
   textSize: string;
   textColor: string;
   mediaPhoneSize: string;
 };
+
+const fadeInAnimation = keyframes`
+      0% { opacity: 0;}
+      100% { opacity: 1;}
+      `;
 
 const StyledContainer = styled.div`
   display: flex;
