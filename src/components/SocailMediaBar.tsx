@@ -4,10 +4,10 @@ import CSS from 'csstype';
 import { FaFacebookSquare, FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { fontSizes, screenSize, colors } from '../constants';
 
-const StyledContainer = styled.div`
+const StyledDiv = styled.div`
   padding: 8px;
-  bottom: 0;
-  position: absolute;
+  display: flex;
+  flex-direction: column;
 `;
 
 const StyledLink = styled.a`
@@ -27,7 +27,7 @@ const socialMediaIconStyle: CSS.Properties = {
 
 export const SocialMediaBar: React.FC = () => {
   return (
-    <StyledContainer>
+    <StyledDiv>
       <StyledLink
         href="https://www.instagram.com/margarita_gbnva/"
         target="_blank"
@@ -49,6 +49,6 @@ export const SocialMediaBar: React.FC = () => {
       <StyledLink href="https://github.com/margarita26" target="_blank" rel="noopener noreferrer">
         <FaGithubSquare style={socialMediaIconStyle} />
       </StyledLink>
-    </StyledContainer>
+    </StyledDiv>
   );
 };
