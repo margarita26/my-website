@@ -1,18 +1,18 @@
 import { css, Global } from '@emotion/core';
 import styled from '@emotion/styled';
-import Container from '@material-ui/core/Container';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
 import { CookiesProvider } from 'react-cookie';
 import './App.css';
 import { LandingPage } from './components/pages';
-import { colors } from './constants/colors';
-import { ApiProvider } from './contexts/api-context';
+import { colors } from './constants';
+import { ApiProvider, ErrorReportingProvider } from './contexts';
 
 const GLobalStyles = css`
   @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
   @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap"');
 `;
 
 const theme = createMuiTheme({
@@ -23,32 +23,30 @@ const theme = createMuiTheme({
     secondary: {
       main: '#3b4757',
     },
-    tonalOffset: 0.2,
+    tonalOffset: 0.5,
   },
 });
 
-const StyledContainer = styled(Container)`
-  display: none;
-  flex-direction: column;
+const StyledContainer = styled.div`
   position: absolute;
-  top: 0;
-  bottom: 0;
   min-width: 100%;
   min-height: 100%;
   background-color: ${colors.primary};
-  overflow: hidden;
+  overflow: scroll;
 `;
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
       <CookiesProvider>
-        <StyledContainer>
-          <Global styles={GLobalStyles} />
+        <ErrorReportingProvider>
           <ApiProvider>
-            <LandingPage />
+            <Global styles={GLobalStyles} />
+            <StyledContainer>
+              <LandingPage />
+            </StyledContainer>
           </ApiProvider>
-        </StyledContainer>
+        </ErrorReportingProvider>
       </CookiesProvider>
     </ThemeProvider>
   );

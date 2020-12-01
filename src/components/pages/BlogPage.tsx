@@ -1,60 +1,59 @@
 import { keyframes } from '@emotion/core';
 import styled from '@emotion/styled';
-import { ListItem } from '@material-ui/core';
-import { useWindowSize } from '@react-hook/window-size';
+import { List, ListItem } from '@material-ui/core';
 import dayjs from 'dayjs';
 import React, { useContext, useEffect, useState } from 'react';
-import { colors, fonts, fontSizes, screenSize } from '../../constants';
-import { Post } from '../../constants/models';
+import { colors, fonts, fontSizes, MONTH_NAMES, screenSize, Post } from '../../constants';
 import { ApiContext } from '../../contexts/api-context';
 
-const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
-type DivProps = {
-  screenWidth: number;
-  screenHeight: number;
-};
-
 type TextProps = {
-  size: string;
+  mobileTextSize: string;
+  desktopTextSize: string;
 };
 
 const slideAnimation = keyframes`
-      0% { left: -500px;}
-      100% { left: 2% ;}
+      0% { left: -${window.screen.width}px}
+      100% { left: 0% ;}
       `;
 
+const StyledList = styled(List)`
+  @media (min-width: ${screenSize.phone}) {
+    left: 6%;
+    max-width: 85%;
+  }
+  @media (min-width: ${screenSize.desktop}) {
+    left: 25%;
+    max-width: 50%;
+  }
+`;
+
 const StyledListItem = styled(ListItem)`
-  animation-name: ${slideAnimation};
+  animation: ${slideAnimation};
   animation-duration: 1s;
   animation-fill-mode: forwards;
 `;
 
-const StyledDiv = styled.div<DivProps>`
+const StyledDiv = styled.div`
   position: absolute;
-  left: 3%;
-  top: 20%;
+  left: 2%;
+  top: 15%;
   flex-direction: column;
-  overflow: scroll;
-  overflow-y: scroll;
+  justify-content: center;
+  align-items: center;
+  width: 96%;
+  margin-bottom: 64px;
+`;
+
+const StyledIntroTextDiv = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 16px;
+  padding-bottom: 32px;
 `;
 
 const StyledDateDiv = styled.div`
-  width: 90px;
-  height: 90px;
   border-radius: 50%;
   border: 1px solid ${colors.neonBlue};
   font-size: ${fontSizes.regular};
@@ -62,24 +61,42 @@ const StyledDateDiv = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  @media (min-width: ${screenSize.phone}) {
+    width: 70px;
+    height: 70px;
+  }
+  @media (min-width: ${screenSize.desktop}) {
+    width: 90px;
+    height: 90px;
+  }
 `;
 
-const StyledPostDiv = styled.div`
-  display: flex;
-  flex-direction: column;
+const StyledIntroText = styled.p`
+  font-family: ${fonts.rajdhani};
+  font-size: ${fontSizes.subHeading};
+  color: ${colors.white};
+  border-top: 1px ${colors.white} solid;
+  border-bottom: 1px ${colors.white} solid;
+  @media (min-width: ${screenSize.phone}) {
+    font-size: ${fontSizes.regular};
+    width: 80%;
+  }
+  @media (min-width: ${screenSize.desktop}) {
+    font-size: ${fontSizes.subHeading};
+    width: 48%;
+  }
 `;
 
 const StyledText = styled.text<TextProps>`
   padding-left: 32px;
   color: ${colors.white};
-  font-size: ${(props: TextProps) => props.size};
-  font-family: ${fonts.rajdhani};
-  /* @media (min-width: ${screenSize.phone}) {
-    font-size: ${fontSizes.regular};
+  font-family: ${fonts.heebo};
+  @media (min-width: ${screenSize.phone}) {
+    font-size: ${(props: TextProps) => props.mobileTextSize};
   }
   @media (min-width: ${screenSize.desktop}) {
-    font-size: ${fontSizes.heading};
-  } */
+    font-size: ${(props: TextProps) => props.desktopTextSize};
+  }
   :hover {
     color: ${colors.neonBlue};
   }
@@ -93,38 +110,44 @@ const StyledDateText = styled.text`
 export const BlogPage: React.FC = () => {
   const { getPosts } = useContext(ApiContext);
   const [posts, setPosts] = useState<Post[]>();
-  const [width, height] = useWindowSize();
-
-  console.log(height);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const result = await getPosts();
-      console.log(result);
-      setPosts(result);
+      if (result) {
+        setPosts(result.reverse());
+      }
     };
     fetchPosts();
-  }, []);
+  }, [getPosts]);
 
   return (
-    <StyledDiv screenHeight={height} screenWidth={width}>
-      {posts?.map((post, index) => {
-        const date = dayjs(post.created_at);
-        return (
-          <StyledListItem button key={index}>
-            <StyledDateDiv>
-              <StyledDateText>
-                {date.day()} {MONTH_NAMES[date.month() - 1]}
-              </StyledDateText>
-              <StyledDateText>{date.year()}</StyledDateText>
-            </StyledDateDiv>
-            <StyledPostDiv>
-              <StyledText size={fontSizes.heading}>{post.title}</StyledText>
-              <StyledText size={fontSizes.regular}>{post.text}</StyledText>
-            </StyledPostDiv>
-          </StyledListItem>
-        );
-      })}
+    <StyledDiv>
+      <StyledIntroTextDiv>
+        <StyledIntroText>
+          Bellow i will share some of the solutions to problems that i encountered while working on
+          different projects and just other interesting stuff that i learned 🥳
+        </StyledIntroText>
+      </StyledIntroTextDiv>
+
+      <StyledList>
+        {posts?.map((post, index) => {
+          const date = dayjs(post.created_at);
+          return (
+            <StyledListItem button alignItems="flex-start" key={index}>
+              <StyledDateDiv>
+                <StyledDateText>
+                  {date.day()} {MONTH_NAMES[date.month() - 1]}
+                </StyledDateText>
+                <StyledDateText>{date.year()}</StyledDateText>
+              </StyledDateDiv>
+              <StyledText mobileTextSize={fontSizes.regular} desktopTextSize={fontSizes.heading}>
+                {post.title}
+              </StyledText>
+            </StyledListItem>
+          );
+        })}
+      </StyledList>
     </StyledDiv>
   );
 };

@@ -1,5 +1,6 @@
-import React, { createContext } from 'react';
+import React, { createContext, useContext } from 'react';
 import { Post } from '../constants';
+import { ErrorReportingProvider, ErrorReportingContext } from './error-context';
 
 const BASE_URL = 'http://localhost:8080';
 
@@ -30,13 +31,16 @@ export const ApiContext = createContext<ApiContextProps>({
 });
 
 export const ApiProvider: React.FC = ({ children }) => {
+  const { recordError } = useContext(ErrorReportingContext);
+
   const getPosts = async () => {
     const response = await fetch(BASE_URL + BLOG, {
       method: 'GET',
       headers: header,
-    });
-    if (response.ok) {
-      return await response.json();;
+    }).catch((error) => recordError(error));
+
+    if (response && response.ok) {
+      return await response.json();
     }
     return null;
   };

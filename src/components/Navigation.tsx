@@ -1,7 +1,7 @@
-import React from 'react';
-import { useWindowSize } from '@react-hook/window-size';
 import styled from '@emotion/styled';
 import { AppBar, Button, IconButton, Link, Toolbar } from '@material-ui/core';
+import { useWindowSize } from '@react-hook/window-size';
+import React from 'react';
 import { colors, fonts, fontSizes, routes, screenSize } from '../constants';
 import logo from '../logo.svg';
 
@@ -44,28 +44,28 @@ export const BarNavigation: React.FC = () => {
   const [width, height] = useWindowSize();
 
   return (
-    <AppBar color="primary" position="fixed">
+    <AppBar color="primary" position="sticky">
       <Toolbar>
         <StyledLink href={routes.welcomePage}>
           <IconButton edge="start" color="default">
             <StyledLogo width={width / 10} height={height / 10} src={logo} />
           </IconButton>
         </StyledLink>
-        <StyledLink href={routes.aboutMePage}>
+        {/* <StyledLink href={routes.aboutMePage}>
           <Button color="default">
-            <StyledText>About me</StyledText>
+            <StyledText>about me</StyledText>
           </Button>
-        </StyledLink>
-        <StyledLink href={routes.experiencePage}>
+        </StyledLink> */}
+        {/* <StyledLink href={routes.experiencePage}>
           <Button color="default">
-            <StyledText>Experience</StyledText>
+            <StyledText>experience</StyledText>
           </Button>
         </StyledLink>
         <StyledLink href={routes.blogPage}>
           <Button color="default">
-            <StyledText>Blog</StyledText>
-          </Button>
-        </StyledLink>
+            <StyledText>blog</StyledText> 
+           </Button> 
+         </StyledLink> */}
       </Toolbar>
     </AppBar>
   );
