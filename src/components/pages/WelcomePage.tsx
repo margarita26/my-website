@@ -1,12 +1,16 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import { fonts, colors, fontSizes } from '../../constants';
-import { keyframes } from '@emotion/core';
+import { keyframes } from "@emotion/core";
+import styled from "@emotion/styled";
+import Emoji from "a11y-react-emoji";
+import React from "react";
+import { isMobile } from "react-device-detect";
+import { ReactSVG } from "react-svg";
+import { colors, fonts, fontSizes, fontWeights } from "../../constants";
 
 type TextProps = {
+  textFamily: string;
   textSize: string;
   textColor: string;
-  mediaPhoneSize: string;
+  textWeight: number;
 };
 
 const fadeInAnimation = keyframes`
@@ -14,53 +18,77 @@ const fadeInAnimation = keyframes`
       100% { opacity: 1;}
       `;
 
-const StyledDiv = styled.div`
+const StyledContainer = styled.div`
+  height: 100%;
+  margin: 16px;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  justify-content: space-evenly;
   flex-direction: column;
   animation-name: ${fadeInAnimation};
   animation-duration: 3s;
 `;
 
+const StyledTextContainer = styled.div`
+  width: 100%;
+`;
+
 const StyledText = styled.text<TextProps>`
-  font-family: ${fonts.rajdhani};
+  font-family: ${(props: TextProps) => props.textFamily};
   font-size: ${(props: TextProps) => props.textSize};
+  font-weight: ${(props: TextProps) => props.textWeight};
   color: ${(props: TextProps) => props.textColor};
-  @media (min-width: 375px) {
-    font-size: ${(props: TextProps) => props.mediaPhoneSize};
-  }
-  @media (min-width: 1000px) {
-    font-size: ${(props: TextProps) => props.textSize};
-  }
 `;
 
 export const WelcomePage: React.FC = () => {
   return (
-    <StyledDiv>
-      <div>
+    <StyledContainer>
+      <div style={{margin:"8px"}}>
+        <StyledTextContainer>
+          <StyledText
+            textColor={colors.neonBlue}
+            textFamily={fonts.rajdhani}
+            textSize={isMobile ? fontSizes.regular : fontSizes.heading}
+            textWeight={0}>
+            Hi, my name is
+          </StyledText>
+        </StyledTextContainer>
+        <StyledTextContainer>
+          <StyledText
+            textColor={colors.white}
+            textFamily={fonts.heebo}
+            textSize={isMobile ? fontSizes.heading : fontSizes.big}
+            textWeight={fontWeights.bold}>
+            Margarita Gubanova
+          </StyledText>
+        </StyledTextContainer>
+        <StyledTextContainer>
+          <StyledText
+            textColor={colors.lightGrey}
+            textFamily={fonts.rajdhani}
+            textSize={isMobile ? fontSizes.regular : fontSizes.heading}
+            textWeight={0}>
+            I am a software engineer located in Boston <Emoji symbol="🤓 " label="smart" />
+          </StyledText>
+        </StyledTextContainer>
+      </div>
+      <div
+        style={{
+          margin: "16px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+        <ReactSVG src={require("../../assets/dna.svg")} />
         <StyledText
-          textColor={colors.neonBlue}
-          textSize={fontSizes.heading}
-          mediaPhoneSize={fontSizes.regular}>
-          Hi, my name is
+          textColor={colors.lightGrey}
+          textFamily={fonts.rajdhani}
+          textSize={fontSizes.regular}
+          textWeight={0}>
+          The site is under construction
         </StyledText>
       </div>
-      <div>
-        <StyledText
-          textColor={colors.white}
-          textSize={fontSizes.big}
-          mediaPhoneSize={fontSizes.heading}>
-          Margarita Gubanova
-        </StyledText>
-      </div>
-      <div>
-        <StyledText
-          textColor={colors.white}
-          textSize={fontSizes.heading}
-          mediaPhoneSize={fontSizes.regular}>
-          I am a software engineer located in Boston 🤓
-        </StyledText>
-      </div>
-    </StyledDiv>
+    </StyledContainer>
   );
 };

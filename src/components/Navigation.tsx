@@ -1,14 +1,9 @@
-import React from 'react';
-import { useWindowSize } from '@react-hook/window-size';
-import styled from '@emotion/styled';
-import { AppBar, Button, IconButton, Link, Toolbar } from '@material-ui/core';
-import { colors, fonts, fontSizes, routes } from '../constants';
-import logo from '../logo.svg';
-
-type LogoProps = {
-  width: number;
-  height: number;
-};
+import styled from "@emotion/styled";
+import { AppBar, IconButton, Link, Toolbar } from "@material-ui/core";
+import React from "react";
+import { isMobile } from "react-device-detect";
+import { routes } from "../constants";
+import logo from "../logo.svg";
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -19,53 +14,23 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const StyledLogo = styled.img<LogoProps>`
-  width: ${(props: LogoProps) => props.width};
-  height: ${(props: LogoProps) => props.height}; ;
-`;
-
-const StyledText = styled.text`
-  font-family: ${fonts.rajdhani};
-  font-size: ${fontSizes.heading};
-  color: ${colors.white};
-  text-decoration: none;
-  :hover {
-    color: ${colors.neonBlue};
-  }
-  @media (min-width: 375px) {
-    font-size: ${fontSizes.regular};
-  }
-  @media (min-width: 1000px) {
-    font-size: ${fontSizes.heading};
-  }
-`;
-
 export const BarNavigation: React.FC = () => {
-  const [width, height] = useWindowSize();
-
   return (
-    <AppBar color="primary" position="fixed">
+    <AppBar
+      color="transparent"
+      position="sticky"
+      style={{ background: "transparent", boxShadow: "none" }}>
       <Toolbar>
         <StyledLink href={routes.welcomePage}>
           <IconButton edge="start" color="default">
-            <StyledLogo width={width / 10} height={height / 10} src={logo} />
+            <img width={isMobile ? 50 : 80} height={isMobile ? 50 : 80} src={logo} alt="logo" />
           </IconButton>
         </StyledLink>
-        <StyledLink href={routes.aboutMePage}>
+        {/* <StyledLink href={routes.aboutMePage}>
           <Button color="default">
-            <StyledText>About me</StyledText>
+            <StyledText>about me</StyledText>
           </Button>
-        </StyledLink>
-        <StyledLink href={routes.experiencePage}>
-          <Button color="default">
-            <StyledText>Experience</StyledText>
-          </Button>
-        </StyledLink>
-        <StyledLink href={routes.blogPage}>
-          <Button color="default">
-            <StyledText>Blog</StyledText>
-          </Button>
-        </StyledLink>
+        </StyledLink> */}
       </Toolbar>
     </AppBar>
   );
