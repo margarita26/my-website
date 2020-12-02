@@ -1,4 +1,4 @@
-[margaritagubanova.com](margaritagubanova.com)
+[margaritagubanova.com](https://margaritagubanova.com)
 
 Personal website built using: 
 * React JS
