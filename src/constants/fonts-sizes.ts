@@ -1,6 +1,6 @@
 export const fontSizes = {
   big: '64px',
-  heading: '2em',
+  heading: '32px',
   subHeading: '24px',
   regular: '16px',
   small: '8px',

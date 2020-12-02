@@ -1,16 +1,16 @@
 import { keyframes } from "@emotion/core";
 import styled from "@emotion/styled";
+import Emoji from "a11y-react-emoji";
 import React from "react";
+import { isMobile } from "react-device-detect";
 import { ReactSVG } from "react-svg";
-import { colors, fonts, fontSizes, fontWeights, screenSize } from "../../constants";
-import Emoji from 'a11y-react-emoji';
+import { colors, fonts, fontSizes, fontWeights } from "../../constants";
 
 type TextProps = {
   textFamily: string;
   textSize: string;
   textColor: string;
   textWeight: number;
-  mediaPhoneSize: string;
 };
 
 const fadeInAnimation = keyframes`
@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
   margin: 16px;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: column;
   animation-name: ${fadeInAnimation};
   animation-duration: 3s;
@@ -34,17 +34,10 @@ const StyledTextContainer = styled.div`
 `;
 
 const StyledText = styled.text<TextProps>`
-  width: 100%;
   font-family: ${(props: TextProps) => props.textFamily};
   font-size: ${(props: TextProps) => props.textSize};
   font-weight: ${(props: TextProps) => props.textWeight};
   color: ${(props: TextProps) => props.textColor};
-  @media (min-width: ${screenSize.phone}) {
-    font-size: ${(props: TextProps) => props.mediaPhoneSize};
-  }
-  @media (min-width: ${screenSize.desktop}) {
-    font-size: ${(props: TextProps) => props.textSize};
-  }
 `;
 
 export const WelcomePage: React.FC = () => {
@@ -55,9 +48,8 @@ export const WelcomePage: React.FC = () => {
           <StyledText
             textColor={colors.neonBlue}
             textFamily={fonts.rajdhani}
-            textSize={fontSizes.heading}
-            textWeight={0}
-            mediaPhoneSize={fontSizes.regular}>
+            textSize={isMobile ? fontSizes.regular : fontSizes.heading}
+            textWeight={0}>
             Hi, my name is
           </StyledText>
         </StyledTextContainer>
@@ -65,9 +57,8 @@ export const WelcomePage: React.FC = () => {
           <StyledText
             textColor={colors.white}
             textFamily={fonts.heebo}
-            textSize={fontSizes.big}
-            textWeight={fontWeights.bold}
-            mediaPhoneSize={fontSizes.heading}>
+            textSize={isMobile ? fontSizes.heading : fontSizes.big}
+            textWeight={fontWeights.bold}>
             Margarita Gubanova
           </StyledText>
         </StyledTextContainer>
@@ -75,21 +66,26 @@ export const WelcomePage: React.FC = () => {
           <StyledText
             textColor={colors.lightGrey}
             textFamily={fonts.rajdhani}
-            textSize={fontSizes.heading}
-            textWeight={0}
-            mediaPhoneSize={fontSizes.regular}>
+            textSize={isMobile ? fontSizes.regular : fontSizes.heading}
+            textWeight={0}>
             I am a software engineer located in Boston <Emoji symbol="🤓 " label="smart" />
           </StyledText>
         </StyledTextContainer>
       </div>
-      <div>
+      <div
+        style={{
+          marginBottom: "16px",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
         <ReactSVG src={require("../../assets/dna.svg")} />
         <StyledText
           textColor={colors.lightGrey}
           textFamily={fonts.rajdhani}
-          textSize={fontSizes.regular}
-          textWeight={0}
-          mediaPhoneSize={fontSizes.regular}>
+          textSize={isMobile ? fontSizes.small : fontSizes.regular}
+          textWeight={0}>
           The site is under construction
         </StyledText>
       </div>

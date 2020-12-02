@@ -1,15 +1,12 @@
-import styled from '@emotion/styled';
-import { createBrowserHistory as history } from 'history';
-import React from 'react';
-import { Router } from 'react-router-dom';
-import { colors, fonts, fontSizes } from 'src/constants';
-import { BarNavigation, Routes, SocialMediaBar } from '../../components';
+import styled from "@emotion/styled";
+import { createBrowserHistory as history } from "history";
+import React from "react";
+import { isMobile } from "react-device-detect";
+import { Router } from "react-router-dom";
+import { colors, fonts, fontSizes } from "src/constants";
+import { BarNavigation, Routes, SocialMediaBar } from "../../components";
 
 const browserHistory = history();
-
-const StyledRouter = styled(Router)`
-  padding: 8px;
-`;
 
 const StyledDiv = styled.div`
   display: flex;
@@ -28,12 +25,13 @@ const StyledFooterDiv = styled.div`
   align-items: center;
   justify-content: center;
   bottom: 0;
-  right: 0;
+  left: 0;
   position: fixed;
+  margin: 24px;
 `;
 
 const StyledFooterText = styled.text`
-  font-size: ${fontSizes.regular};
+  font-size: ${isMobile ? fontSizes.small : fontSizes.regular};
   font-family: ${fonts.rajdhani};
   color: ${colors.white};
 `;
@@ -41,13 +39,13 @@ const StyledFooterText = styled.text`
 export const LandingPage: React.FC = () => {
   return (
     <StyledDiv>
-      <StyledRouter history={browserHistory}>
+      <Router history={browserHistory}>
         <BarNavigation />
         <Routes />
-      </StyledRouter>
+      </Router>
       <StyledFooterDiv>
         <SocialMediaBar />
-        <StyledFooterText> M.G 2020 </StyledFooterText>
+        <StyledFooterText> © M.G 2020 </StyledFooterText>
       </StyledFooterDiv>
     </StyledDiv>
   );

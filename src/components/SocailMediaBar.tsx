@@ -1,28 +1,24 @@
-import React from 'react';
-import styled from '@emotion/styled';
-import CSS from 'csstype';
-import { FaFacebookSquare, FaGithubSquare, FaInstagram, FaLinkedin } from 'react-icons/fa';
-import { fontSizes, screenSize, colors } from '../constants';
+import styled from "@emotion/styled";
+import CSS from "csstype";
+import React from "react";
+import { isMobile } from "react-device-detect";
+import { FaFacebookSquare, FaGithubSquare, FaInstagram, FaLinkedin } from "react-icons/fa";
+import { colors, fontSizes } from "../constants";
 
 const StyledDiv = styled.div`
   padding: 8px;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 const StyledLink = styled.a`
-  font-size: ${fontSizes.heading};
-  @media (min-width: ${screenSize.phone}) {
-    font-size: ${fontSizes.regular};
-  }
-  @media (min-width: ${screenSize.desktop}) {
-    font-size: ${fontSizes.heading};
-  }
+  font-size: ${isMobile ? fontSizes.regular : fontSizes.heading};
 `;
 
 const socialMediaIconStyle: CSS.Properties = {
   color: colors.white,
-  padding: '8px',
+  padding: "8px",
 };
 
 export const SocialMediaBar: React.FC = () => {
