@@ -1,25 +1,53 @@
+import { css, Global } from '@emotion/core';
+import styled from '@emotion/styled';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
 import React from 'react';
-import logo from './logo.svg';
+import { CookiesProvider } from 'react-cookie';
 import './App.css';
+import { LandingPage } from './components/pages';
+import { colors } from './constants/colors';
+import Container from '@material-ui/core/Container';
+
+const GLobalStyles = css`
+  @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+`;
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#0B1A2E',
+    },
+    secondary: {
+      main: '#3b4757',
+    },
+    tonalOffset: 0.2,
+  },
+});
+
+const StyledContainer = styled(Container)`
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: ${colors.primary};
+  overflow: hidden;
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CookiesProvider>
+        <StyledContainer>
+          <Global styles={GLobalStyles} />
+          <LandingPage />
+        </StyledContainer>
+      </CookiesProvider>
+    </ThemeProvider>
   );
 }
 
