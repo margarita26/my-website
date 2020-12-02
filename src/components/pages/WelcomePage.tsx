@@ -1,9 +1,9 @@
-import { keyframes } from '@emotion/core';
-import styled from '@emotion/styled';
-import React from 'react';
-import { colors, fonts, fontSizes, fontWeights, screenSize } from '../../constants';
-import { render } from 'react-dom';
-import { ReactSVG } from 'react-svg';
+import { keyframes } from "@emotion/core";
+import styled from "@emotion/styled";
+import React from "react";
+import { ReactSVG } from "react-svg";
+import { colors, fonts, fontSizes, fontWeights, screenSize } from "../../constants";
+import Emoji from 'a11y-react-emoji';
 
 type TextProps = {
   textFamily: string;
@@ -47,8 +47,6 @@ const StyledText = styled.text<TextProps>`
   }
 `;
 
-const StyledDnaContainer = styled.div``;
-
 export const WelcomePage: React.FC = () => {
   return (
     <StyledContainer>
@@ -80,12 +78,12 @@ export const WelcomePage: React.FC = () => {
             textSize={fontSizes.heading}
             textWeight={0}
             mediaPhoneSize={fontSizes.regular}>
-            I am a software engineer located in Boston 🤓
+            I am a software engineer located in Boston <Emoji symbol="🤓 " label="smart" />
           </StyledText>
         </StyledTextContainer>
       </div>
       <div>
-        <ReactSVG src={require('../../assets/dna.svg')} />
+        <ReactSVG src={require("../../assets/dna.svg")} />
         <StyledText
           textColor={colors.lightGrey}
           textFamily={fonts.rajdhani}

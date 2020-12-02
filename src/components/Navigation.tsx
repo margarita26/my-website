@@ -1,9 +1,9 @@
-import styled from '@emotion/styled';
-import { AppBar, Button, IconButton, Link, Toolbar } from '@material-ui/core';
-import { useWindowSize } from '@react-hook/window-size';
-import React from 'react';
-import { colors, fonts, fontSizes, routes, screenSize } from '../constants';
-import logo from '../logo.svg';
+import styled from "@emotion/styled";
+import { AppBar, IconButton, Link, Toolbar } from "@material-ui/core";
+import { useWindowSize } from "@react-hook/window-size";
+import React from "react";
+import { routes } from "../constants";
+import logo from "../logo.svg";
 
 type LogoProps = {
   width: number;
@@ -24,21 +24,21 @@ const StyledLogo = styled.img<LogoProps>`
   height: ${(props: LogoProps) => props.height}; ;
 `;
 
-const StyledText = styled.text`
-  font-family: ${fonts.rajdhani};
-  font-size: ${fontSizes.heading};
-  color: ${colors.white};
-  text-decoration: none;
-  :hover {
-    color: ${colors.neonBlue};
-  }
-  @media (min-width: ${screenSize.phone}) {
-    font-size: ${fontSizes.regular};
-  }
-  @media (min-width: ${screenSize.desktop}) {
-    font-size: ${fontSizes.heading};
-  }
-`;
+// const StyledText = styled.text`
+//   font-family: ${fonts.rajdhani};
+//   font-size: ${fontSizes.heading};
+//   color: ${colors.white};
+//   text-decoration: none;
+//   :hover {
+//     color: ${colors.neonBlue};
+//   }
+//   @media (min-width: ${screenSize.phone}) {
+//     font-size: ${fontSizes.regular};
+//   }
+//   @media (min-width: ${screenSize.desktop}) {
+//     font-size: ${fontSizes.heading};
+//   }
+// `;
 
 export const BarNavigation: React.FC = () => {
   const [width, height] = useWindowSize();

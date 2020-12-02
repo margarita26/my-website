@@ -1,10 +1,11 @@
-import { keyframes } from '@emotion/core';
-import styled from '@emotion/styled';
-import { List, ListItem } from '@material-ui/core';
-import dayjs from 'dayjs';
-import React, { useContext, useEffect, useState } from 'react';
-import { colors, fonts, fontSizes, MONTH_NAMES, screenSize, Post } from '../../constants';
-import { ApiContext } from '../../contexts/api-context';
+import { keyframes } from "@emotion/core";
+import styled from "@emotion/styled";
+import { List, ListItem } from "@material-ui/core";
+import dayjs from "dayjs";
+import React, { useContext, useEffect, useState } from "react";
+import { colors, fonts, fontSizes, MONTH_NAMES, screenSize, Post } from "../../constants";
+import { ApiContext } from "../../contexts/api-context";
+import Emoji from 'a11y-react-emoji';
 
 type TextProps = {
   mobileTextSize: string;
@@ -126,28 +127,29 @@ export const BlogPage: React.FC = () => {
       <StyledIntroTextDiv>
         <StyledIntroText>
           Bellow i will share some of the solutions to problems that i encountered while working on
-          different projects and just other interesting stuff that i learned 🥳
+          different projects and just other interesting stuff that i learned <Emoji symbol="🥳" label="cheering" />
         </StyledIntroText>
       </StyledIntroTextDiv>
-
-      <StyledList>
-        {posts?.map((post, index) => {
-          const date = dayjs(post.created_at);
-          return (
-            <StyledListItem button alignItems="flex-start" key={index}>
-              <StyledDateDiv>
-                <StyledDateText>
-                  {date.day()} {MONTH_NAMES[date.month() - 1]}
-                </StyledDateText>
-                <StyledDateText>{date.year()}</StyledDateText>
-              </StyledDateDiv>
-              <StyledText mobileTextSize={fontSizes.regular} desktopTextSize={fontSizes.heading}>
-                {post.title}
-              </StyledText>
-            </StyledListItem>
-          );
-        })}
-      </StyledList>
+      <span role="img">
+        <StyledList>
+          {posts?.map((post, index) => {
+            const date = dayjs(post.created_at);
+            return (
+              <StyledListItem button alignItems="flex-start" key={index}>
+                <StyledDateDiv>
+                  <StyledDateText>
+                    {date.day()} {MONTH_NAMES[date.month() - 1]}
+                  </StyledDateText>
+                  <StyledDateText>{date.year()}</StyledDateText>
+                </StyledDateDiv>
+                <StyledText mobileTextSize={fontSizes.regular} desktopTextSize={fontSizes.heading}>
+                  {post.title}
+                </StyledText>
+              </StyledListItem>
+            );
+          })}
+        </StyledList>
+      </span>
     </StyledDiv>
   );
 };
