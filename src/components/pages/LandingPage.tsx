@@ -27,7 +27,7 @@ const StyledFooterDiv = styled.div`
   bottom: 0;
   left: 0;
   position: fixed;
-  margin: 24px;
+  margin: 8px;
 `;
 
 const StyledFooterText = styled.text`

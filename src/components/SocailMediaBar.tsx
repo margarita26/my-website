@@ -18,7 +18,7 @@ const StyledLink = styled.a`
 
 const socialMediaIconStyle: CSS.Properties = {
   color: colors.white,
-  padding: "8px",
+  padding: "4px",
 };
 
 export const SocialMediaBar: React.FC = () => {

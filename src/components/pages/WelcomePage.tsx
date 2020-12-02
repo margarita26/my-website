@@ -84,7 +84,7 @@ export const WelcomePage: React.FC = () => {
         <StyledText
           textColor={colors.lightGrey}
           textFamily={fonts.rajdhani}
-          textSize={isMobile ? fontSizes.small : fontSizes.regular}
+          textSize={fontSizes.regular}
           textWeight={0}>
           The site is under construction
         </StyledText>
