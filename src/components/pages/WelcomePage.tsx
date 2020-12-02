@@ -43,7 +43,7 @@ const StyledText = styled.text<TextProps>`
 export const WelcomePage: React.FC = () => {
   return (
     <StyledContainer>
-      <div>
+      <div style={{margin:"8px"}}>
         <StyledTextContainer>
           <StyledText
             textColor={colors.neonBlue}
@@ -74,7 +74,7 @@ export const WelcomePage: React.FC = () => {
       </div>
       <div
         style={{
-          marginBottom: "16px",
+          margin: "16px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
