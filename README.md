@@ -7,7 +7,7 @@ Personal website built using:
 * [Material UI](https://github.com/mui-org/material-ui)
 
 
-Deployment:
+Cloud:
 * Storage AWS S3 
 * DNS AWS Route53 
 * Deployment to S3 using Github Actions
