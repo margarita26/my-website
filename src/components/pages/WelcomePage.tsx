@@ -1,10 +1,13 @@
 import { keyframes } from "@emotion/core";
 import styled from "@emotion/styled";
+import { faTerminal } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Emoji from "a11y-react-emoji";
 import React from "react";
 import { isMobile } from "react-device-detect";
-import { ReactSVG } from "react-svg";
+import { Link } from "react-scroll";
 import { colors, fonts, fontSizes, fontWeights } from "../../constants";
+import { routes } from "../../constants/routes";
 
 type TextProps = {
   textFamily: string;
@@ -14,13 +17,18 @@ type TextProps = {
 };
 
 const fadeInAnimation = keyframes`
-      0% { opacity: 0;}
-      100% { opacity: 1;}
-      `;
+  0% { opacity: 0;}
+  100% { opacity: 1;}
+  `;
 
-const StyledContainer = styled.div`
+const glowingAnimation = keyframes`
+  0% { opacity: 0}
+  100% { opacity: 1}
+`;
+
+const StyledContainer = styled.main`
   height: 100%;
-  margin: 16px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -29,21 +37,42 @@ const StyledContainer = styled.div`
   animation-duration: 3s;
 `;
 
-const StyledTextContainer = styled.div`
+const StyledTextSectrionContainer = styled.section`
+  margin: 64px;
+`;
+
+const StyledTextContainer = styled.aside`
   width: 100%;
 `;
 
-const StyledText = styled.text<TextProps>`
+const StyledText = styled.aside<TextProps>`
   font-family: ${(props: TextProps) => props.textFamily};
   font-size: ${(props: TextProps) => props.textSize};
   font-weight: ${(props: TextProps) => props.textWeight};
   color: ${(props: TextProps) => props.textColor};
 `;
 
+const StyledGlowingIcon = styled(FontAwesomeIcon)`
+  color: ${colors.white};
+  font-size: ${fontSizes.heading};
+  animation: ${glowingAnimation} 1s infinite alternate;
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
+const StyledTerminalIconContainer = styled.nav`
+  margin: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
+
 export const WelcomePage: React.FC = () => {
   return (
     <StyledContainer>
-      <div style={{margin:"8px"}}>
+      <StyledTextSectrionContainer>
         <StyledTextContainer>
           <StyledText
             textColor={colors.neonBlue}
@@ -71,24 +100,16 @@ export const WelcomePage: React.FC = () => {
             I am a software engineer located in Boston <Emoji symbol="🤓 " label="smart" />
           </StyledText>
         </StyledTextContainer>
-      </div>
-      <div
-        style={{
-          margin: "16px",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-        }}>
-        <ReactSVG src={require("../../assets/dna.svg")} />
-        <StyledText
-          textColor={colors.lightGrey}
-          textFamily={fonts.rajdhani}
-          textSize={fontSizes.regular}
-          textWeight={0}>
-          The site is under construction
-        </StyledText>
-      </div>
+        <aside style={{ opacity: 0, height: 0 }}>
+          приветики пидорасы
+          <Emoji symbol="😀" label="лох" />{" "}
+        </aside>
+      </StyledTextSectrionContainer>
+      <StyledTerminalIconContainer>
+        <Link to={routes.terminal} smooth={true} spy={true}>
+          <StyledGlowingIcon icon={faTerminal} />
+        </Link>
+      </StyledTerminalIconContainer>
     </StyledContainer>
   );
 };

@@ -27,10 +27,9 @@ const theme = createMuiTheme({
   },
 });
 
-const StyledContainer = styled.div`
-  position: absolute;
-  min-width: 100%;
-  min-height: 100%;
+const StyledContainer = styled.main`
+  height: 100%;
+  width: 100%;
   background-color: ${colors.primary};
   overflow: scroll;
 `;

@@ -1,4 +1,4 @@
 export const routes = {
-  welcomePage: '/',
-  blogPage: '/blog',
+  welcomePage: "/",
+  terminal: "/terminal",
 };
